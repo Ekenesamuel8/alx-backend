@@ -3,8 +3,7 @@
 
 
 from flask import Flask, render_template
-from flask_babelex import Babel
-app = Flask(__name__)
+from flask_babel import Babel
 
 
 class Config:
@@ -14,14 +13,18 @@ class Config:
     BABEL_DEFAULT_TIMEZONE = "UTC"
 
 
-babel = Babel(app)
-
-
+# Instantiate the application object
+app = Flask(__name__)
 app.config.from_object(Config)
+# Wrap the application with Babel
+babel = Babel(app)
 
 
 @app.route('/')
 def index():
+    """
+    Renders a basic html template
+    """
     return "render_template('1-index.html')"
 
 
